@@ -1,4 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.global')
+
+@section('title')
+    Halaman Beranda
+@endsection
 
 @section('content')
 <div class="container">
