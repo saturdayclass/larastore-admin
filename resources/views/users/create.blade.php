@@ -5,9 +5,13 @@
 @section('content')
 
 <div class="col-md-8">
+@if(session('status'))
+    <div class="alert alert-success">
+        {{session('status')}}
+    </div>
+@endif 
 
-
-<form action="{{route('users.store')}}" enctype="multpart/form-data" class="bg-white shadow-sm p-3" method="POST">
+<form action="{{route('users.store')}}" enctype="multipart/form-data" class="bg-white shadow-sm p-3" method="POST">
   @csrf
 
   <label for="name">Name</label>
@@ -56,7 +60,7 @@
       <label for="phone">Phone number</label> 
       <br>
       <input 
-        type="text" 
+        type="number" 
         name="phone" 
         class="form-control">
 
