@@ -14,12 +14,21 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::paginate(10);
+        $users = User::paginate(5);
         $keyword = $request->get('keyword');
+        $status = $request->get('status');
 
         if($keyword){
-            $users = User::where('email', 'LIKE', "%$keyword%")->paginate(10);
+            if($status){
+                $users = User::where('email', 'LIKE', "%$keyword%")->where('status', $status)->paginate(5);
+            } else {
+                $users = User::where('email', 'LIKE', "%$keyword%")->paginate(5);
+            }
         }
+
+        if($status){
+            $users = User::where('status', $status)->paginate(5);
+        } 
 
         return view('users.index', compact('users'));
     }
@@ -60,7 +69,7 @@ class UserController extends Controller
 
         $new_user->save();
 
-        return redirect('users/create')->with('status', 'User Successfully Created');
+        return redirect('users')->with('status', 'User Successfully Created');
     }
 
     /**
@@ -104,6 +113,7 @@ class UserController extends Controller
         $user->roles = json_encode($request->get('roles'));
         $user->address = $request->get('address');
         $user->phone = $request->get('phone');
+        $user->status = $request->get('status');
 
         if($request->file('avatar')){
             if($user->avatar && file_exists(storage_path('app/public'. $user->avatar)) ){
@@ -116,7 +126,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('users.edit', [$id])->with('status', 'User successfully updated!');
+        return redirect('users')->with('status', 'User successfully updated!');
     }
 
     /**
