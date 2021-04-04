@@ -30,7 +30,7 @@
 
             </td>
             <td>
-              [TODO: actions]
+              <a class="btn btn-info text-white btn-sm" href="{{route('users.edit', [$user->id])}}">Edit</a>
             </td>
           </tr>
         @endforeach 
