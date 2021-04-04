@@ -4,6 +4,11 @@
 
 @section('content')
 
+    @if(session('status'))
+      <div class="alert alert-success">
+        {{session('status')}}
+      </div>
+    @endif 
 
     <table class="table table-bordered">
       <thead>
@@ -30,15 +35,13 @@
 
             </td>
             <td>
-              <a class="btn btn-info text-white btn-sm" href="{{route('users.edit', [$user->id])}}">Edit</a>
+              <a class="btn btn-primary text-white btn-sm" href="{{route('users.edit', [$user->id])}}">Edit</a>
               <form method="post" action="{{route('users.destroy', [$user->id])}}" class="d-inline" onsubmit="return confirm('Delete this data permanently?')">
                 @csrf
-
                 <input type="hidden" name="_method" value="DELETE"/>
-
                 <input type="submit" value="DELETE" class="btn btn-danger btn-sm">
               </form>
-
+              <a class="btn btn-info text-white btn-sm" href="{{route('users.show', [$user->id])}}">Detail</a>
             </td>
           </tr>
         @endforeach 
