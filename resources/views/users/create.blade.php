@@ -78,6 +78,7 @@
         id="avatar" 
         name="avatar" 
         type="file" 
+        accept="image/*"
         class="form-control">
 
       <hr class="my-3">

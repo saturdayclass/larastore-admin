@@ -123,6 +123,7 @@
       id="avatar" 
       name="avatar" 
       type="file" 
+      accept="image/*"
       class="form-control">
     <small 
       class="text-muted">Kosongkan jika tidak ingin mengubah avatar</small>
