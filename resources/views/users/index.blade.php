@@ -109,7 +109,7 @@
       </tbody>
       <tfoot>
         <tr>
-            <td colspan=5>
+            <td colspan="10">
                 {{$users->appends(Request::all())->links()}}
             </td>
         </tr>
