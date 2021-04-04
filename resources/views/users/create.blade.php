@@ -5,7 +5,11 @@
 @section('content')
 
 <div class="col-md-8">
-
+@if(session('status'))
+    <div class="alert alert-success">
+        {{session('status')}}
+    </div>
+@endif 
 
 <form action="{{route('users.store')}}" enctype="multpart/form-data" class="bg-white shadow-sm p-3" method="POST">
   @csrf
